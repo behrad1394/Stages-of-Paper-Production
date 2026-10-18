@@ -1,1 +1,143 @@
+r'''<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>از درخت تا کاغذ | مراحل ساخت کاغذ</title>
+<style>
+  :root{--green:#28734b;--green2:#e8f5ec;--ink:#20312a;--muted:#5d6d64;--cream:#fbfaf5;--line:#dce8de;--gold:#e9b949}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:2}
+  header{background:linear-gradient(135deg,#174d35,#31845a);color:white;padding:48px 20px 42px;text-align:center}
+  header .tag{display:inline-block;border:1px solid #ffffff70;border-radius:30px;padding:3px 14px;font-size:13px;margin-bottom:12px}
+  h1{font-size:clamp(27px,5vw,43px);margin:4px 0 8px;line-height:1.5}
+  header p{max-width:720px;margin:0 auto;color:#e8f4ec}
+  .wrap{max-width:1000px;margin:auto;padding:28px 18px 60px}
+  .intro{background:white;border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-top:-20px;box-shadow:0 8px 24px #173d2510}
+  .intro h2{margin:0 0 8px;color:var(--green);font-size:21px}
+  .intro p{margin:0;color:var(--muted)}
+  .progress-area{margin:28px 0 18px}
+  .progress-head{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;color:var(--muted);margin-bottom:8px}
+  .progress{height:8px;background:#e4ebe4;border-radius:10px;overflow:hidden}
+  .bar{height:100%;width:0;background:var(--gold);transition:width .25s}
+  .steps{display:grid;gap:16px}
+  .step{background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:box-shadow .2s}
+  .step.active{border-color:#9bc9a9;box-shadow:0 6px 20px #28734b12}
+  .step summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:17px 18px}
+  .step summary::-webkit-details-marker{display:none}
+  .num{flex:0 0 43px;height:43px;border-radius:50%;display:grid;place-items:center;background:var(--green2);color:var(--green);font-weight:bold;font-size:18px}
+  .step-title{flex:1}
+  .step-title strong{display:block;font-size:17px}
+  .step-title small{color:var(--muted);font-size:12px}
+  .chevron{color:var(--green);font-size:20px;transition:transform .2s}
+  details[open] .chevron{transform:rotate(180deg)}
+  .content{padding:0 76px 22px 22px;color:#40534a}
+  .content p{margin:0 0 10px}
+  .fact{background:#f3f8f3;border-right:3px solid var(--green);padding:10px 13px;border-radius:7px;font-size:14px}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 30px}
+  button{font-family:inherit;border:0;border-radius:10px;padding:10px 16px;cursor:pointer;font-size:14px}
+  .primary{background:var(--green);color:white}
+  .secondary{background:#eaf0e9;color:var(--ink)}
+  .finish{margin-top:26px;background:#fff7df;border:1px solid #f0dfaa;border-radius:16px;padding:20px}
+  .finish h2{margin:0 0 8px;font-size:21px}
+  .finish p{margin:0}
+  .glossary{margin-top:28px}
+  .glossary h2{font-size:22px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+  .term{background:white;border:1px solid var(--line);padding:14px;border-radius:12px}
+  .term strong{color:var(--green);display:block}
+  footer{text-align:center;color:var(--muted);padding:20px;font-size:12px;border-top:1px solid var(--line)}
+  @media(max-width:600px){header{padding:36px 16px}.content{padding:0 18px 20px}.step summary{padding:14px}.num{flex-basis:38px;height:38px}.step-title strong{font-size:15px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">آموزش علوم و فناوری</div>
+  <h1>از درخت تا کاغذ</h1>
+  <p>کاغذی که هر روز استفاده می‌کنیم چگونه ساخته می‌شود؟ مسیر چوب را از جنگل تا کارخانه دنبال کن.</p>
+</header>
+<main class="wrap">
+  <section class="intro">
+    <h2>سفر کاغذ از کجا شروع می‌شود؟</h2>
+    <p>در بسیاری از کارخانه‌ها، الیاف گیاهیِ چوب پس از جداشدن، تمیزشدن و مخلوط‌شدن با آب به خمیر تبدیل می‌شوند. سپس آبِ خمیر گرفته می‌شود، الیاف به هم می‌چسبند و با خشک‌شدن، ورق کاغذ شکل می‌گیرد. برای دیدن جزئیات هر مرحله، روی عنوان آن بزن.</p>
+  </section>
 
+  <div class="progress-area">
+    <div class="progress-head"><span>مراحل را بررسی کن</span><span id="progressText">۰ از ۸ مرحله باز شده</span></div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+  </div>
+
+  <div class="steps" id="steps">
+    <details class="step">
+      <summary><span class="num">۱</span><span class="step-title"><strong>آماده‌سازی و برداشت چوب</strong><small>انتخاب درختان و بریدن تنه</small></span><span class="chevron">⌄</span></summary>
+      <div class="content"><p>در ابتدا، چوب موردنیاز کارخانه تهیه می‌شود. در مدیریت درست جنگل، برداشت باید برنامه‌ریزی‌شده باشد و به احیای جنگل و حفظ زیستگاه‌ها توجه شود. بخشی از مواد اولیهٔ کاغذ نیز می‌تواند از چوبِ باقی‌ماندهٔ صنایع چوب یا کاغذ بازیافتی تأمین شود.</p><div class="fact">نکته: همهٔ کاغذها الزاماً از درخت تازه‌بریده‌شده ساخته نمی‌شوند؛ کاغذ بازیافتی هم منبع مهمی از الیاف است.</div></div>
+    </details>
+    <details class="step">
+      <summary><span class="num">۲</span><span class="step-title"><strong>انتقال چوب به کارخانه</strong><small>حمل و آماده‌سازی مواد اولیه</small></span><span class="chevron">⌄</span></summary>
+      <div class="content"><p>تنه‌های بریده‌شده به کارخانهٔ کاغذسازی منتقل می‌شوند. در کارخانه، چوب‌ها بر اساس نوع و کیفیت بررسی می‌شوند تا برای مراحل بعدی آماده باشند.</p><div class="fact">هدف این مرحله: رساندن مواد اولیه به خط تولید و آماده‌کردن آن‌ها برای خردشدن.</div></div>
+    </details>
+    <details class="step">
+      <summary><span class="num">۳</span><span class="step-title"><strong>پوست‌گیری و خردکردن چوب</strong><small>تبدیل تنه به تراشه‌های کوچک</small></span><span class="chevron">⌄</span></summary>
+      <div class="content"><p>دستگاه‌های مخصوص، پوست تنه را جدا می‌کنند. سپس چوب وارد خردکن می‌شود و به قطعه‌های کوچک و نسبتاً هم‌اندازه‌ای به نام «تراشه» تبدیل می‌شود. اندازهٔ مناسب تراشه‌ها کمک می‌کند مواد در مرحلهٔ خمیرسازی یکنواخت‌تر عمل کنند.</p><div class="fact">تراشهٔ چوب هنوز کاغذ نیست؛ فقط مادهٔ اولیهٔ آماده‌شده برای جداکردن الیاف است.</div></div>
+    </details>
+    <details class="step">
+      <summary><span class="num">۴</span><span class="step-title"><strong>تبدیل تراشه‌ها به خمیر کاغذ</strong><small>جداکردن الیاف سلولزی</small></span><span class="chevron">⌄</span></summary>
+      <div class="content"><p>تراشه‌ها در روش‌های صنعتی مختلف فرآوری می‌شوند. در روش شیمیایی، آن‌ها همراه با آب و مواد شیمیایی مناسب در دستگاهی بزرگ و تحت شرایط کنترل‌شده پخته می‌شوند. این کار بخش زیادی از موادی را که الیاف را به هم متصل کرده‌اند جدا می‌کند و الیاف سلولزی آزادتر می‌شوند. روش‌های مکانیکی نیز با نیرو و آسیاب‌کردن، الیاف را از چوب جدا می‌کنند.</p><div class="fact">خمیر کاغذ مخلوطی از الیاف ریز و آب است؛ در این مرحله هنوز بسیار خیس و شل است.</div></div>
+    </details>
+    <details class="step">
+      <summary><span class="num">۵</span><span class="step-title"><strong>شست‌وشو، پاک‌سازی و در صورت نیاز سفیدکردن</strong><small>آماده‌سازی خمیر برای تولید ورق</small></span><span class="chevron">⌄</span></summary>
+      <div class="content"><p>خمیر شسته می‌شود تا مواد ناخواسته و باقی‌ماندهٔ فرایند از آن جدا شوند. با الک‌ها و تجهیزات پاک‌سازی، ذرات نامناسب گرفته می‌شوند. اگر کاغذ روشن یا سفید لازم باشد، خمیر با فرایندهای کنترل‌شده سفید می‌شود؛ اما همهٔ انواع کاغذ به یک اندازه سفید نمی‌شوند.</p><div class="fact">رنگ نهایی کاغذ به نوع الیاف، روش تولید و کاربرد آن بستگی دارد.</div></div>
+    </details>
+    <details class="step">
+      <summary><span class="num">۶</span><span class="step-title"><strong>پخش خمیر و آب‌گیری</strong><small>شکل‌گرفتن ورق نازک</small></span><span class="chevron">⌄</span></summary>
+      <div class="content"><p>خمیرِ رقیق‌شده روی یک توریِ متحرک و پهن پخش می‌شود. آب از سوراخ‌های توری خارج می‌شود و الیاف روی سطح آن کنار هم قرار می‌گیرند. به این ترتیب، یک لایهٔ نازک و پیوسته تشکیل می‌شود که پایهٔ ورق کاغذ است.</p><div class="fact">در این مرحله، چیدمان الیاف و میزان آب بر یکنواختی ورق اثر می‌گذارد.</div></div>
+    </details>
+    <details class="step">
+      <summary><span class="num">۷</span><span class="step-title"><strong>پرس‌کردن و خشک‌کردن</strong><small>گرفتن آب باقی‌مانده و استحکام‌بخشی</small></span><span class="chevron">⌄</span></summary>
+      <div class="content"><p>ورق خیس از میان غلتک‌های پرس عبور می‌کند تا آب بیشتری از آن خارج شود. سپس از بخش خشک‌کن می‌گذرد؛ معمولاً با تماس کنترل‌شده با سیلندرهای گرم، رطوبت باقی‌مانده کاهش پیدا می‌کند. الیاف در کنار هم محکم می‌شوند و ورق استحکام بیشتری پیدا می‌کند.</p><div class="fact">پرس آب را کم می‌کند؛ خشک‌کن رطوبت باقی‌مانده را کاهش می‌دهد. این دو کار یکسان نیستند.</div></div>
+    </details>
+    <details class="step">
+      <summary><span class="num">۸</span><span class="step-title"><strong>پرداخت نهایی، رول‌کردن و برش</strong><small>آماده‌شدن کاغذ برای مصرف</small></span><span class="chevron">⌄</span></summary>
+      <div class="content"><p>بسته به نوع محصول، سطح کاغذ ممکن است صاف یا پوشش‌دهی شود. سپس کاغذ به شکل رول‌های بزرگ پیچیده می‌شود و دستگاه‌های برش آن را به اندازه‌های موردنیاز، مانند ورق‌های A4 یا اندازه‌های مخصوص چاپ و بسته‌بندی، تبدیل می‌کنند. در پایان، کیفیت محصول بررسی و کاغذ بسته‌بندی می‌شود.</p><div class="fact">حالا کاغذ آماده است تا به دفتر، کتاب، روزنامه، جعبه یا محصولات دیگر تبدیل شود.</div></div>
+    </details>
+  </div>
+
+  <div class="controls">
+    <button class="primary" id="openAll">بازکردن همهٔ مراحل</button>
+    <button class="secondary" id="closeAll">بستن همهٔ مراحل</button>
+  </div>
+
+  <section class="finish">
+    <h2>خلاصهٔ مسیر</h2>
+    <p>چوب ← تراشه ← خمیر الیافی ← شست‌وشو و پاک‌سازی ← پخش روی توری و آب‌گیری ← پرس و خشک‌کردن ← رول و برش کاغذ</p>
+  </section>
+
+  <section class="glossary">
+    <h2>واژه‌های مهم</h2>
+    <div class="terms">
+      <div class="term"><strong>تراشهٔ چوب</strong>قطعه‌های کوچک چوب که پس از خردکردن تنه به دست می‌آیند.</div>
+      <div class="term"><strong>الیاف سلولزی</strong>رشته‌های ریزی که بخش اصلی ساختار کاغذ را تشکیل می‌دهند.</div>
+      <div class="term"><strong>خمیر کاغذ</strong>مخلوطی از الیاف و آب که برای ساخت ورق آماده می‌شود.</div>
+      <div class="term"><strong>آب‌گیری</strong>خارج‌کردن آب از خمیر برای شکل‌دادن و محکم‌شدن ورق.</div>
+    </div>
+  </section>
+</main>
+<footer>پایان مسیر؛ از الیاف گیاهی تا کاغذ قابل استفاده</footer>
+<script>
+  const steps = [...document.querySelectorAll('.step')];
+  const bar = document.getElementById('bar');
+  const text = document.getElementById('progressText');
+  const digits = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+  function updateProgress(){
+    const count = steps.filter(s => s.open).length;
+    text.textContent = `${digits(count)} از ${digits(steps.length)} مرحله باز شده`;
+    bar.style.width = `${count / steps.length * 100}%`;
+    steps.forEach(s => s.classList.toggle('active', s.open));
+  }
+  steps.forEach(s => s.addEventListener('toggle', updateProgress));
+  document.getElementById('openAll').addEventListener('click', () => {steps.forEach(s => s.open = true); updateProgress();});
+  document.getElementById('closeAll').addEventListener('click', () => {steps.forEach(s => s.open = false); updateProgress();});
+  updateProgress();
+</script>
+</body>
+</html>
